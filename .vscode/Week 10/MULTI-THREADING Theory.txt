@@ -1,0 +1,54 @@
+MULTI-THREADING:
+Multithreading in Java allows you to execute multiple threads concurrently within a single program. Threads are lightweight processes that can execute independently, sharing the same memory space. This concurrency can help improve the performance and responsiveness of your Java applications.
+
+To work with multithreading in Java, you can use the `java.lang.Thread` class or the `java.util.concurrent.Executor` framework. Here's an example using the `Thread` class:
+
+```
+public class MyThread extends Thread {
+    public void run() {
+        // Code to be executed in the thread
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create and start the threads
+        MyThread thread1 = new MyThread();
+        MyThread thread2 = new MyThread();
+        thread1.start();
+        thread2.start();
+
+        // Code to be executed in the main thread
+    }
+}
+```
+
+In this example, the `MyThread` class extends the `Thread` class and overrides the `run()` method with the code you want to execute in the thread. The `start()` method is called on each thread object to start their execution.
+
+Alternatively, you can implement the `java.lang.Runnable` interface and pass it to a `Thread` object. Here's an example:
+
+```
+public class MyRunnable implements Runnable {
+    public void run() {
+        // Code to be executed in the thread
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create and start the threads
+        Thread thread1 = new Thread(new MyRunnable());
+        Thread thread2 = new Thread(new MyRunnable());
+        thread1.start();
+        thread2.start();
+
+        // Code to be executed in the main thread
+    }
+}
+```
+
+In this case, the `MyRunnable` class implements the `Runnable` interface and provides the implementation for the `run()` method. The `Thread` objects are created by passing an instance of `MyRunnable` to their constructor.
+
+Multithreading allows you to perform tasks concurrently, but it also introduces challenges such as thread synchronization, shared resource access, and potential race conditions. Java provides synchronization mechanisms like `synchronized` blocks and `java.util.concurrent` classes to help address these issues.
+
+It's important to design and write thread-safe code when working with multiple threads to ensure correct and consistent results and avoid concurrency problems.
